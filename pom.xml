@@ -155,6 +155,11 @@
 			<version>42.3.8</version>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>5.3.12</version>
+		</dependency>
 	</dependencies>
 
 	<build>
