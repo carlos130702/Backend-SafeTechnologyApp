@@ -1,5 +1,6 @@
 package com.acme.webserviceslinerepair.shared.configuration;
 
+import io.swagger.v3.oas.annotations.servers.Server;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@Server(url = "https://unaccountable-rain-production.up.railway.app")
 public class OpenApiConfiguration {
     @Bean
     public OpenAPI customOpenApi(
