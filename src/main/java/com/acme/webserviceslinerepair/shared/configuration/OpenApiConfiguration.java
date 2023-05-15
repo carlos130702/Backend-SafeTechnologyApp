@@ -11,10 +11,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@Server(url = "https://unaccountable-rain-production.up.railway.app")
-public class OpenApiConfiguration {
+@Server(url = "https://backend-safetechnologyapp-production.up.railway.app")
+public class OpenApiConfiguration implements WebMvcConfigurer {
     @Bean
     public OpenAPI customOpenApi(
             @Value("${documentation.application.description}") String applicationDescription,
@@ -40,5 +42,15 @@ public class OpenApiConfiguration {
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("*")
+                .allowCredentials(true)
+                .maxAge(3600);
     }
 }
