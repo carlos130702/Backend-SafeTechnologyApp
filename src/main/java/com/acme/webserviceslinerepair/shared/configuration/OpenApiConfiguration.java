@@ -11,12 +11,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @Server(url = "https://backend-safetechnologyapp-production.up.railway.app")
-public class OpenApiConfiguration implements WebMvcConfigurer {
+public class OpenApiConfiguration {
     @Bean
     public OpenAPI customOpenApi(
             @Value("${documentation.application.description}") String applicationDescription,
