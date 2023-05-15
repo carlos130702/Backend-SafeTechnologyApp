@@ -70,15 +70,15 @@ public class AppointmentServiceImpl implements AppointmentService {
             throw new ResourceValidationException(ENTITY, violations);
 
         var client = clientRepository.findById(clientId);
-        if(client==null)
+        if(!client.isPresent())
             throw new ResourceNotFoundException(ENTITY2, clientId);
 
         var technician = technicianRepository.findById(technicianId);
-        if(technician==null)
+        if(!technician.isPresent())
             throw new ResourceNotFoundException(ENTITY3, technicianId);
 
         var applianceModel = applianceModelRepository.findById(applianceModelId);
-        if(applianceModel==null)
+        if(!applianceModel.isPresent())
             throw new ResourceNotFoundException(ENTITY4, applianceModelId);
 
         request.setClient(client.get());
@@ -115,7 +115,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public List<Appointment> getByClientId(Long clientId) {
         var client = clientRepository.findById(clientId);
-        if(client==null)
+        if(!client.isPresent())
             throw new ResourceNotFoundException(ENTITY2, clientId);
 
         return appointmentRepository.findByClientId(clientId);
@@ -124,7 +124,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public List<Appointment> getByTechnicianId(Long technicianId) {
         var technician = technicianRepository.findById(technicianId);
-        if(technician==null)
+        if(!technician.isPresent())
             throw new ResourceNotFoundException(ENTITY3, technicianId);
 
         return appointmentRepository.findByTechnicianId(technicianId);
